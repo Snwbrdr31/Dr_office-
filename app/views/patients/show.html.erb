@@ -1,0 +1,22 @@
+<h1>Patient</h1>
+
+  <h1><%= @patient.first_name %></h1>
+  <h1><%= @patient.last_name %></h1>
+
+<% end %>
+
+<% if @patient.appointments.any? %>
+<h5> Patients </h5>
+<ul>
+  <% @patient.appointments.each do |appointments| %>
+  <li>
+    <% appointments.patient.last_name %> - <%= appointments.appointment_date %>
+    <%= link_to 'Remove', appointments_path(appointments), class: "btn", method: :delete %>
+  </li>
+<% end %>
+</ul>
+<% else %>
+  <h5> No Appointments Found </h5>
+<% end %>
+
+<%= link_to 'All Patients', patients_path, class: "btn" %>
